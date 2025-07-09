@@ -35,7 +35,7 @@ jobs:
     - name: Build and Push image un Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        image: isidoronm/prueba1:21-jdk
+        image: isidoronm/prueba1
         tags: v03
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
