@@ -36,6 +36,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
         image: isidoronm/prueba1:21-jdk
+        tags: v03
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
