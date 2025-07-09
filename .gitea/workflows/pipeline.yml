@@ -1,0 +1,7 @@
+name: Construir una aplicación web.
+run-name: ${{ gitea.actor }} está construyendo una aplicacióncon web con Gitea Actions 🚀
+on: [push]
+
+jobs:
+  Constuctor:
+    runs-on: ubuntu-latest
