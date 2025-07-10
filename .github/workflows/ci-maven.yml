@@ -52,7 +52,7 @@ jobs:
         dockerfile: ./Dockerfile
         image: prueba-cicd
         registry: ghcr.io
-        tags: ${{ github.sha }}  # O usa cualquier otra forma de versionado, por ejemplo "v1"
+        tags: v1, latest # O usa cualquier otra forma de versionado, por ejemplo "v1"
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_TOKEN }}      
         
