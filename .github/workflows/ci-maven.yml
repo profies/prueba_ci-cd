@@ -49,19 +49,10 @@ jobs:
     - name: Build and Push Docker image to GHCR
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        # Configura el nombre de la imagen y el tag
-        repository: ghcr.io/${{ github.repository_owner }}/prueba-cicd
+        dockerfile: ./Dockerfile
+        image: ${{ github.repository_owner }}/prueba-cicd
+        registry: gcr.io
         tags: ${{ github.sha }}  # O usa cualquier otra forma de versionado, por ejemplo "v1"
-          
-        # Para permitir la autenticación con GHCR
         username: ${{ github.actor }}  # Tu nombre de usuario de GitHub
-        password: ${{ secrets.TOKEN_GHCR }}  # El token de GitHub Actions
-          
-        # Si tu Dockerfile no está en la raíz, puedes indicar su ubicación
-        dockerfile: ./Dockerfile  # Si está en una subcarpeta, cámbialo según sea necesario
-          
-        # Si necesitas pasar variables de entorno a Docker (opcional)
-        build-args: |
-          ARG1=value1
-          ARG2=value2
+        password: ${{ secrets.TOKEN_GHCR }}  # El token de GitHub Actions       
         
