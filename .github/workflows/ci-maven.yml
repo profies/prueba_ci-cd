@@ -32,11 +32,11 @@ jobs:
         cache: maven
     
     # Paso 3: Construir el jar de la aplicación con MAVEN
-    - name: Build with Maven
+    - name: Build con Maven
       run: mvn -B package --file pom.xml
 
     # Paso 4: Construir una imagen docker para aplicación y subirla a DOCKER HUB
-    - name: Build and Push image un Docker Hub
+    - name: Build and Push imagen docker en Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
         image: isidoronm/prueba1
@@ -45,13 +45,13 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    # Paso 4: Construir una imagen docker para aplicación y subirla a DOCKER HUB
-    - name: Build and Push Docker image to GHCR
+    # Paso 4: Construir una imagen docker para aplicación y subirla a GitHub Container Registry (GHCR)
+    - name: Build and Push imagen docker en GHCR
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
         dockerfile: ./Dockerfile
         image: ${{ github.repository_owner }}/prueba-cicd
-        registry: gcr.io
+        registry: ghcr.io
         tags: ${{ github.sha }}  # O usa cualquier otra forma de versionado, por ejemplo "v1"
         username: ${{ github.actor }}  # Tu nombre de usuario de GitHub
         password: ${{ secrets.TOKEN_GHCR }}  # El token de GitHub Actions       
