@@ -20,8 +20,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Paso 1: Realizar un checkout del código del repositorio en el que estoy.
     - uses: actions/checkout@v4
     
+    # Paso 2: Configurar el entorno de ejecución (ubuntu-latest) para que disponga de JAVA21
     - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
@@ -29,9 +31,11 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
+    # Paso 3: Construir el jar de la aplicación con MAVEN
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    # Paso 4: Construir una imagen docker para aplicación y subirla a DOCKER HUB
     - name: Build and Push image un Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
@@ -40,3 +44,24 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    # Paso 4: Construir una imagen docker para aplicación y subirla a DOCKER HUB
+    - name: Build and Push Docker image to GHCR
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        # Configura el nombre de la imagen y el tag
+        repository: ghcr.io/${{ github.repository_owner }}/prueba-cicd
+        tags: ${{ github.sha }}  # O usa cualquier otra forma de versionado, por ejemplo "v1"
+          
+        # Para permitir la autenticación con GHCR
+        username: ${{ github.actor }}  # Tu nombre de usuario de GitHub
+        password: ${{ secrets.TOKEN_GHCR }}  # El token de GitHub Actions
+          
+        # Si tu Dockerfile no está en la raíz, puedes indicar su ubicación
+        dockerfile: ./Dockerfile  # Si está en una subcarpeta, cámbialo según sea necesario
+          
+        # Si necesitas pasar variables de entorno a Docker (opcional)
+        build-args: |
+          ARG1=value1
+          ARG2=value2
+        
