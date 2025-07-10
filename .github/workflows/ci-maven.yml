@@ -53,6 +53,6 @@ jobs:
         image: ${{ github.repository_owner }}/prueba-cicd
         registry: ghcr.io
         tags: ${{ github.sha }}  # O usa cualquier otra forma de versionado, por ejemplo "v1"
-        username: ${{ github.actor }}  # Tu nombre de usuario de GitHub
-        password: ${{ secrets.TOKEN_GHCR }}  # El token de GitHub Actions       
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_TOKEN }}      
         
