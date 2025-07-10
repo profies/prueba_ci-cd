@@ -50,7 +50,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
         dockerfile: ./Dockerfile
-        image: ${{ github.repository_owner }}/prueba-cicd
+        image: prueba-cicd
         registry: ghcr.io
         tags: ${{ github.sha }}  # O usa cualquier otra forma de versionado, por ejemplo "v1"
         username: ${{ github.actor }}
