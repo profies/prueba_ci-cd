@@ -24,7 +24,7 @@ jobs:
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ vars.IP_EC2_CDCI }}  # IP pública de la instancia EC2
-          username: ec2-user           # Usuario de la instancia EC2
+          username: ubuntu           # Usuario de la instancia EC2
           key: ${{ secrets.EC2_SSH_KEY }}  # Clave privada almacenada como secreto
           port: 22                     # Puerto SSH (puede ser 22 o el que hayas configurado)
           script: |
