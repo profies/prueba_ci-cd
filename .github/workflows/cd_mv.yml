@@ -14,8 +14,19 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
+     # Paso 1: Imprimir información instancia EC2 despliegue.
       - name: Imprimir información deploy
         run: |
-          echo "Hola."
-          echo "Usuario Docker: ${{ secrets.DOCKER_USERNAME }}"
           echo "IP instancia EC2: ${{ vars.IP_EC2_CDCI }}"
+
+     # Paso 2: Autenticación y despliegue usando appleboy/ssh-action
+      - name: Deploy Docker container to EC2 using SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ vars.IP_EC2_CDCI }}  # IP pública de la instancia EC2
+          username: ec2-user           # Usuario de la instancia EC2
+          key: ${{ secrets.EC2_SSH_KEY }}  # Clave privada almacenada como secreto
+          port: 22                     # Puerto SSH (puede ser 22 o el que hayas configurado)
+          script: |
+            docker pull ghcr.io/profies/prueba-cicd:v1 &&
+            docker run -d -p 80:80 ghcr.io/profies/prueba-cicd:v1
