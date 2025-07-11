@@ -37,4 +37,4 @@ jobs:
             docker pull ghcr.io/profies/prueba-cicd:v1           
             
             # Ejecutar el contenedor
-            docker run -d -p 80:80 ghcr.io/profies/prueba-cicd:v1
+            docker run -d -p 8080:8080 ghcr.io/profies/prueba-cicd:v1
