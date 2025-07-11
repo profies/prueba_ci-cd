@@ -14,7 +14,6 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-    - name: Imprimir información deploy
+      - name: Imprimir información deploy
         run: |
-          echo "IP instancia EC2: ${IP_EC2_CDCI}"    
-          
+          echo "IP instancia EC2: ${IP_EC2_CDCI}"
