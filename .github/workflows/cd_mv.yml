@@ -28,5 +28,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}  # Clave privada almacenada como secreto
           port: 22                     # Puerto SSH (puede ser 22 o el que hayas configurado)
           script: |
+            whoami
             docker pull ghcr.io/profies/prueba-cicd:v1 &&
             docker run -d -p 80:80 ghcr.io/profies/prueba-cicd:v1
