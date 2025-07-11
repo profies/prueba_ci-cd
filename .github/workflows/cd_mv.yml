@@ -16,4 +16,5 @@ jobs:
     steps:
       - name: Imprimir información deploy
         run: |
+          echo "Hola."
           echo "IP instancia EC2: ${{ env.IP_EC2_CDCI }}"
