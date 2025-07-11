@@ -17,4 +17,5 @@ jobs:
       - name: Imprimir información deploy
         run: |
           echo "Hola."
-          echo "IP instancia EC2: ${{ secrets.IP_EC2_CDCI }}"
+          echo "Usuario Docker: ${{ secrets.DOCKER_USERNAME }}"
+          echo "IP instancia EC2: ${{ vars.IP_EC2_CDCI }}"
